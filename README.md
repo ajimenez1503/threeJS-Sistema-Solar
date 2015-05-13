@@ -1,2 +1,3 @@
-# threeJS-Sistema-Solar
-Sistema solar simple con un planeta, satélite y el sol. 
+threeJS Sistema Solar
+=======================
+Aimación del sistema solar simple con un planeta, satélite y el sol mediante threeJS
