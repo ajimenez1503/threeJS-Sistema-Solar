@@ -1,8 +1,4 @@
-function Planeta(radius,textura,distancia){
-
-	//conjuto de satelites
-	this.satelites = [];
-
+function Satelite(radius,textura,distancia){
 	this.resolution=25;
 	this.geometry=new THREE.SphereGeometry(radius,this.resolution,this.resolution);
 	this.material=new THREE.MeshBasicMaterial({
@@ -28,12 +24,5 @@ function Planeta(radius,textura,distancia){
 	this.draw=function(scene){
 		scene.add(this.transformacion);
 	};
-
-	this.addSatelite=function(satelite){
-		this.satelites.push(satelite);
-		satelite.draw(this.mesh);
-	};
-
-
 
 };

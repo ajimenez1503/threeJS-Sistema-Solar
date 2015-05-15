@@ -18,7 +18,6 @@ function renderScene() {
 
 function main() {
 
-
 	renderer.setClearColor(0xFFFFFF,1.0);
 	renderer.setSize(window.innerWidth, window.innerHeight);
 	renderer.shadowMapEnabled = true;
@@ -29,13 +28,24 @@ function main() {
 	scene.add(axes);
 
 //add sol
-	sol = new Sun(4,'img/sun.jpg');
+	sol = new Sun(5,'img/sun.jpg');
 	sol.draw(scene);
 
 
 //Add planeta
-	tierra= new Planeta(2,'img/earth.jpg',20);
-	tierra.draw(scene);
+	tierra= new Planeta(3,'img/earth.jpg',20);
+	//tierra.draw(scene);
+
+//añadimos la tierra al sol
+	sol.addPlaneta(tierra);
+
+
+//Add satelite
+	luna= new Satelite(2,'img/moon.gif',10);
+
+//añadimos la luna a la tierra
+	tierra.addSatelite(luna);
+
 
 
 //añadimos la luz
