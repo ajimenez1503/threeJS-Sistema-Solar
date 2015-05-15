@@ -1,13 +1,17 @@
 var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
 var renderer = new THREE.WebGLRenderer();
+var tierra;
+var transformacionTierra;
+var step=0;
 var sol;
 
 main();
 
 function renderScene() {
-	sol.position.x=Math.sin(step)*20;
 
+	step+=0.01;
+	tierra.animar(step);
 	requestAnimationFrame(renderScene);
 	renderer.render(scene, camera);
 }
@@ -23,52 +27,25 @@ function main() {
 //add ejes
 	var axes = new THREE.AxisHelper( 20 );
 	scene.add(axes);
-/*
-// Add plano
-	var planeGeometry = new THREE.PlaneGeometry(60,20,1,1);
-	var planeMaterial = new THREE.MeshLambertMaterial({color: 0xcccccc});
-	var plane = new THREE.Mesh(planeGeometry,planeMaterial);
-	plane.rotation.x=-0.5*Math.PI;
-	plane.position.x = 15;
-	plane.position.y = 0;
-	plane.position.z = 0;
-	plane.receiveShadow=true;
-	plane.name = "objeto-" + scene.children.length;
-	scene.add(plane);
+
+//add sol
+	sol = new Sun(4,'img/sun.jpg');
+	sol.draw(scene);
 
 
-// A�adir cubo
-var cubeGeometry = new THREE.CubeGeometry(4,4,4);
-var cubeMaterial = new THREE.MeshBasicMaterial({color: 0xff0000, wireframe: true});
- cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
-cube.position.x = -4;
-cube.position.y = 3;
-cube.position.z = 0;
-cube.castShadow=true;
-cube.name = "objeto-" + scene.children.length;
-scene.add(cube);*/
+//Add planeta
+	tierra= new Planeta(2,'img/earth.jpg',20);
+	tierra.draw(scene);
 
 
-// A�adir sol
-var SolGeometry = new THREE.SphereGeometry(4,20,20);
-var sphereMaterial = new THREE.MeshPhongMaterial({color: 0x7777ff});
-sphere = new THREE.Mesh(sphereGeometry,sphereMaterial);
-sphere.position.x = 0;
-sphere.position.y = 0;
-sphere.position.z = 0;
-sphere.castShadow=true;
-sphere.name = "Sol";
-scene.add(sphere);
-
-
-
-
+//añadimos la luz
 var spotLight = new THREE.SpotLight( 0xffffff );
 spotLight.position.set( -40, 60, -10 );
 spotLight.castShadow=true;
 scene.add( spotLight );
 
-// A�adir c�mara
+
+// Añadir camara
 camera.position.x = -30;
 camera.position.y = 40;
 camera.position.z = 30;
