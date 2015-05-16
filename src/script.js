@@ -20,8 +20,9 @@ function main() {
 
 	renderer.setClearColor(0xFFFFFF,1.0);
 	renderer.setSize(window.innerWidth, window.innerHeight);
-	renderer.shadowMapEnabled = true;
+	renderer.shadowMapEnabled = false; //no shadow casting
 	renderer.setSize(window.innerWidth, window.innerHeight);
+
 
 //add ejes
 	var axes = new THREE.AxisHelper( 20 );
@@ -34,7 +35,6 @@ function main() {
 
 //Add planeta
 	tierra= new Planeta(3,'img/earth.jpg',20);
-	//tierra.draw(scene);
 
 //añadimos la tierra al sol
 	sol.addPlaneta(tierra);
@@ -45,14 +45,14 @@ function main() {
 
 //añadimos la luna a la tierra
 	tierra.addSatelite(luna);
-
-
-
 //añadimos la luz
-var spotLight = new THREE.SpotLight( 0xffffff );
-spotLight.position.set( -40, 60, -10 );
-spotLight.castShadow=true;
-scene.add( spotLight );
+var pointLight = new THREE.PointLight( 0xffffff );
+pointLight.position.set( 1,0,0 );
+pointLight.castShadow=true;
+scene.add( pointLight );
+
+
+
 
 
 // Añadir camara

@@ -5,13 +5,14 @@ function Planeta(radius,textura,distancia){
 
 	this.resolution=25;
 	this.geometry=new THREE.SphereGeometry(radius,this.resolution,this.resolution);
-	this.material=new THREE.MeshBasicMaterial({
+	this.material=new THREE.MeshLambertMaterial({
 		map: THREE.ImageUtils.loadTexture(textura) });
 	this.mesh= new THREE.Mesh(this.geometry,this.material);
 	this.mesh.position.x = distancia;
 	this.mesh.position.y = 0;
 	this.mesh.position.z = 0;
-	this.mesh.castShadow=false;
+	//this.mesh.castShadow=true;
+	//this.mesh.receiveShadow = true;
 	this.mesh.name = "Planeta";
 
 	//objeto intermedio para realizar transformaciones
