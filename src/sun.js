@@ -7,7 +7,7 @@ function Sun(radius,textura){
 	this.geometry=new THREE.SphereGeometry(radius,this.resolution,this.resolution);
 	this.material=new THREE.MeshBasicMaterial({
 		map: THREE.ImageUtils.loadTexture(textura)});
-	this.material.emmissive= new THREE.Color(200,200,0);
+	//this.material.emmissive= new THREE.Color(200,200,0);
 	this.mesh= new THREE.Mesh(this.geometry,this.material);
 	this.mesh.position.x = 0;
 	this.mesh.position.y = 0;

@@ -35,19 +35,17 @@ function main() {
 
 //Add planeta
 	tierra= new Planeta(3,'img/earth.jpg',20);
-
-//añadimos la tierra al sol
-	sol.addPlaneta(tierra);
+	sol.addPlaneta(tierra);//añadimos la tierra al sol
 
 
 //Add satelite
 	luna= new Satelite(2,'img/moon.gif',10);
+	tierra.addSatelite(luna);//añadimos la luna a la tierra
 
-//añadimos la luna a la tierra
-	tierra.addSatelite(luna);
+
 //añadimos la luz
 var pointLight = new THREE.PointLight( 0xffffff );
-pointLight.position.set( 1,0,0 );
+pointLight.position.set( 0,0,0 );
 pointLight.castShadow=true;
 scene.add( pointLight );
 
