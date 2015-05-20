@@ -4,7 +4,8 @@ var renderer = new THREE.WebGLRenderer();
 var tierra;
 var transformacionTierra;
 var step=0;
-var step2=0;
+var stepluna=0;
+var mvluna=true;
 var sol;
 
 main();
@@ -12,12 +13,15 @@ main();
 function renderScene() {
 
 	step+=0.01;
-	step2+=0.02;
-	tierra.animar(step,step2);
+	if(mvluna) stepluna+=0.015;
+	else stepluna-=0.01;
+	tierra.animar(step,stepluna);
 	requestAnimationFrame(renderScene);
 	renderer.render(scene, camera);
 }
-
+function switchLuna(){
+	mvluna=!mvluna;
+}
 function main() {
 
 	renderer.setClearColor(0x000000,1.0);
@@ -25,18 +29,13 @@ function main() {
 	renderer.shadowMapEnabled = false; //no shadow casting
 	renderer.setSize(window.innerWidth, window.innerHeight);
 
-
-//add ejes
-	//var axes = new THREE.AxisHelper( 20 );
-	//scene.add(axes);
-
 //add sol
-	sol = new Sun(5,'img/sun.jpg');
+	sol = new Sun(6,'img/sun.jpg');
 	sol.draw(scene);
 
 
 //Add planeta
-	tierra= new Planeta(3,'img/earth.jpg',20);
+	tierra= new Planeta(4,'img/earth.jpg',25);
 	sol.addPlaneta(tierra);//añadimos la tierra al sol
 
 
