@@ -21,9 +21,12 @@ function Planeta(radius,textura,distancia){
 	//añadimos el planeta a la transformacion
 	this.transformacion.add(this.mesh);
 
-	this.animar=function(step){
+	this.animar=function(step,step2){
 		this.mesh.rotation.y=step;
 		this.transformacion.rotation.y=step;
+		for(i=0;i<this.satelites.length;i++){
+		this.satelites[i].animar(step2);
+		}
 	};
 
 	this.draw=function(scene){

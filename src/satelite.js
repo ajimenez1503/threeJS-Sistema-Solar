@@ -9,7 +9,7 @@ function Satelite(radius,textura,distancia){
 	this.mesh.position.z = 0;
 	//this.mesh.castShadow=true;
 	//this.mesh.receiveShadow = true;
-	this.mesh.name = "Planeta";
+	this.mesh.name = "Satelite";
 
 	//objeto intermedio para realizar transformaciones
 	this.transformacion=new THREE.Object3D();

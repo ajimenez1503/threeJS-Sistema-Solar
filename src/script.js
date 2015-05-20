@@ -4,6 +4,7 @@ var renderer = new THREE.WebGLRenderer();
 var tierra;
 var transformacionTierra;
 var step=0;
+var step2=0;
 var sol;
 
 main();
@@ -11,22 +12,23 @@ main();
 function renderScene() {
 
 	step+=0.01;
-	tierra.animar(step);
+	step2+=0.02;
+	tierra.animar(step,step2);
 	requestAnimationFrame(renderScene);
 	renderer.render(scene, camera);
 }
 
 function main() {
 
-	renderer.setClearColor(0xFFFFFF,1.0);
+	renderer.setClearColor(0x000000,1.0);
 	renderer.setSize(window.innerWidth, window.innerHeight);
 	renderer.shadowMapEnabled = false; //no shadow casting
 	renderer.setSize(window.innerWidth, window.innerHeight);
 
 
 //add ejes
-	var axes = new THREE.AxisHelper( 20 );
-	scene.add(axes);
+	//var axes = new THREE.AxisHelper( 20 );
+	//scene.add(axes);
 
 //add sol
 	sol = new Sun(5,'img/sun.jpg');
@@ -51,13 +53,12 @@ scene.add( pointLight );
 
 
 
-
-
 // Añadir camara
 camera.position.x = -30;
 camera.position.y = 40;
 camera.position.z = 30;
 camera.lookAt(scene.position);
+
 
 $("#canvas").append(renderer.domElement);
 
